@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Psychic</title>
+</head>
+
+<body>
+    <h1>Guess what i'm thinking</h1>
+    <p>Press a letter and see if you can guess what the letter i'm thinking.</p>
+    <div id="score"></div>
+    <script type="text/javascript">
+
+    var wins = 0;
+    var losses = 0;
+    var guessesLeft = 10;
+    var guessesSoFarArray = [];
+    var gueesesSoFar;
+    var computerGuess; 
+
+    var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+    function start() {
+    computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    guessesSoFarArray = [];
+    console.log(computerGuess);
+
+        }
+     start();
+
+    
+
+
+   
+    document.onkeyup = function(event) {
+
+        console.log(event.key);
+
+
+    
+
+    guessesSoFar = event.key;
+    guessesSoFarArray.push(" " + guessesSoFar);
+
+    if (event.key === computerGuess) {
+        alert("you win!");
+        wins++;
+        start();
+    }
+
+    if (event.key !== computerGuess) {
+        guessesLeft--;
+    }
+
+    if (guessesLeft === 0) {
+        alert("you lose!");
+        losses++;
+        guessesLeft = 10;
+    }
+
+
+    var html =
+        "<p>wins: " + wins + "</p>" +
+        "<p>losses: " + losses + "</p>" +
+        "<p>guesses left: " + guessesLeft + "</p>" +
+        "<p>guesses used: " + guessesSoFarArray + "</p>";
+
+    document.querySelector("#score").innerHTML = html;
+
+    
+}
+
+    </script>
+</body>
+
+</html>
